@@ -1,0 +1,426 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    /* padding: 40px 200px; */
+    background-color: #F7F8FA;
+    font-family: 'Roboto', sans-serif;
+}
+
+main{
+    display: flex;
+    -webkit-box-shadow: 0px 2px 17px 5px rgba(0,0,0,0.12); 
+    box-shadow: 0px 2px 17px 5px rgba(0,0,0,0.12);
+    border-radius: 20px;
+    width: 90%;
+    margin: 30px auto;
+}
+
+
+
+#sidebar{
+    height: calc(100vh - 80px);
+    background-color: white;
+    flex: 1;
+    padding: 20px;
+    min-width: 260px;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px 0 0 20px;
+}
+
+.logo{
+    display:flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.logo h1{
+    font-weight: 100;
+    margin: 0 10px;
+}
+
+.logo span{
+    font-weight: 300;
+}
+
+.logo img{
+    height: 40px;
+}
+
+#side-links{
+    list-style: none;
+    min-height: 140px;
+    padding: 10px;
+    margin-top: 60px;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#side-links li {
+    /* color: rgb(145, 145, 145); */
+    color: #39355C;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#side-links li span{
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+
+
+.active-link{
+    color: #653FDB !important; 
+    min-width: 200px;
+    background-color: rgb(243, 241, 241);
+    border-radius: 100px;
+    transition: 0.4s ease all;
+}
+
+
+.project-list{
+    list-style: none;
+    margin-left: 15px;
+    display: none;
+}
+
+.project-link{
+    font-weight: 400 !important;
+}
+
+.expand{
+    display: block;
+    animation: emerge 0.7s forwards;
+}
+
+.github{
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.github span{
+    display: none;
+    margin: 0 10px;
+    animation: textAppear 0.8s forwards;
+    font-weight: 200;
+}
+
+.github:hover  span{
+    display: block;
+    animation: textAppear 0.8s forwards;
+}
+
+@keyframes textAppear{
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+
+#content{
+    background-color: #F7F8FA;
+    flex: 3;
+    overflow-y: scroll;
+    height: calc(100vh - 80px);
+    padding: 20px 30px;
+    border-radius: 0 20px 20px 0;
+    position: relative;
+}
+
+#page-title{
+    padding: 10px;
+    margin: 20px;
+    font-weight: 400;
+    color: #39355c;
+    /* border-bottom: 1px solid #39355c5d; */
+    width: fit-content;
+}
+
+#new-todo-button{
+    font-family: inherit;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background-color: #00C400;
+    color: white;
+    border: none;
+    font-size: 40px;
+    font-weight: 100;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    transition: 0.6s transform ease-in-out;
+    outline: none;
+}
+
+#new-todo-button:hover{
+    transform: rotate(360deg) scale(1.1);
+    cursor: pointer;
+    box-shadow: none;
+}
+
+
+.modal{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    animation: emerge 0.8s forwards;
+    padding: 30px 0;
+}
+
+.modal p{
+    margin-top: 30px;
+    font-size: 32px;
+    font-weight: 300;
+    padding: 10px;
+    color: #39355c;
+}
+
+.todo-form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 400px;
+    padding: 10px;
+}
+
+.todo-form input, .todo-form select, .todo-form #delete-button{
+    height: 40px;
+    margin: 10px 0;
+    padding: 10px;
+    border: thin solid #39355c75;
+    border-radius: 5px;
+    outline: none;
+}
+
+.todo-form select{
+    width: 380px;
+}
+
+.todo-form textarea{
+    resize: none;
+    margin: 10px 0;
+    padding: 10px;
+    border: thin solid #39355c75;
+    border-radius: 5px;
+    font-family: inherit;
+    outline: none;
+}
+
+.todo-form input, .todo-form textarea{
+    color: #39355c;
+}
+
+.todo-form input[type = "submit"]{
+    color: white;
+    background-color: #00C400;
+    margin-top: 10px;
+    border:none;
+    font-size: 16px;
+}
+
+.todo-form #delete-button{
+    color: white;
+    background-color: #00C400;
+    margin-top: 10px;
+    border:none;
+    font-size: 16px;
+}
+
+.todo-form input[type = "submit"]:hover, .todo-form #delete-button:hover{
+    cursor: pointer;
+    background-color: #00c400d5;
+}
+
+.todo-form label{
+    font-weight: 400;
+    color: #39355c;
+}
+
+.modal span{
+    position: fixed;
+    top: 20px;
+    right: 50px;
+    font-weight: 300;
+    color: #39355c;
+    font-size: 32px;
+}
+
+.modal span:hover{
+    color: #663fdbbe;
+    cursor: pointer;
+}
+
+.modal-active{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo-wrapper{
+    margin-top: 30px;
+}
+
+.todo-wrapper .todo{
+    margin: 20px;
+    background-color: white;
+    max-width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 20px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    animation: emerge 0.6s forwards;
+    position: relative;
+    z-index: 0;
+}
+
+.todo li{
+    width: 100%;
+    list-style: none;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+    border-radius: 15px;
+}
+
+
+
+.todo-title{
+    width: 120px;
+}
+
+
+.expand-button{
+    transition: 0.3s all ease-in-out;
+    justify-self: flex-end;
+}
+
+
+
+.expand-button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+.details{
+    display: none;
+    position: relative;
+    width: 100%;
+    padding: 20px 10px;
+}
+
+.details p{
+    font-weight: 200;
+}
+
+ .expand-details{
+    display: flex;
+    min-height: 60px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.details > *{
+    flex: 1;
+}
+
+.details .edit-button{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: 0.3s all ease-in-out;
+}
+
+.edit-button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+.completed span{
+    opacity: 0.3;
+    text-decoration: line-through;
+}
+
+
+.todo-wrapper input[type = "checkbox"] {
+    display: none;
+}
+  
+.todo-wrapper input[type = "checkbox"] + label:before {
+    content: "⬜️";
+    margin-right: 50px;
+    /* justify-self: flex-start; */
+}
+
+.todo-wrapper input[type = "checkbox"]:checked + label:before {
+    content: "✅";
+}
+
+
+.notification-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    padding: 0 5px;
+    bottom: 50px;
+    left: 50%;
+    right: 50%;
+    background-color: rgb(57, 53, 92);
+    color: white;
+    height: 50px;
+    min-width: 200px;
+    border-radius: 10px;
+    transform: translateY(100px);
+    transition: 0.4s all ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
+    animation: emerge 0.6s forwards;
+}
+
+.notification-active{
+    transform: translateY(0);
+}
+
+@keyframes emerge {
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
